@@ -12,6 +12,7 @@ import '@formatjs/intl-relativetimeformat/locale-data/vi';
 
 import { LanguageUtils } from '../utils'
 
+// Lấy tất cả thông điệp đã được dịch cho các ngôn ngữ được hỗ trợ
 const messages = LanguageUtils.getFlattenedMessages();
 
 class IntlProviderWrapper extends Component {
@@ -29,6 +30,7 @@ class IntlProviderWrapper extends Component {
     }
 }
 
+// mapStateToProps kết nối trạng thái ngôn ngữ từ Redux store
 const mapStateToProps = state => {
     return {
         language: state.app.language

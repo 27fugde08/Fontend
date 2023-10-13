@@ -18,6 +18,7 @@ class Login extends Component {
         this.btnLogin = React.createRef();
     }
 
+    // Trạng thái ban đầu của trang đăng nhập
     initialState = {
         username: '',
         password: '',
@@ -28,53 +29,64 @@ class Login extends Component {
         ...this.initialState
     };
 
+    // Xóa trạng thái đăng nhập sau khi đăng xuất hoặc thành công
     refresh = () => {
         this.setState({
             ...this.initialState
         })
     }
 
+    // Xử lý thay đổi tên người dùng
     onUsernameChange = (e) => {
         this.setState({ username: e.target.value })
     }
 
+    // Xử lý thay đổi mật khẩu
     onPasswordChange = (e) => {
         this.setState({ password: e.target.value })
     }
 
+    // Chuyển hướng đến trang quản lý người dùng sau khi đăng nhập thành công
     redirectToSystemPage = () => {
         const { navigate } = this.props;
         const redirectPath = '/system/user-manage';
         navigate(`${redirectPath}`);
     }
 
+    // Xử lý đăng nhập
     processLogin = () => {
         const { username, password } = this.state;
 
         const { adminLoginSuccess, adminLoginFail } = this.props;
+
+        // Tạo thông tin đăng nhập tạm thời để giả lập đăng nhập thành công
         let loginBody = {
             username: 'admin',
             password: '123456'
         }
-        //sucess
+
+        // Giả lập đăng nhập thành công và lưu thông tin người dùng vào Redux store
         let adminInfo = {
             "tlid": "0",
             "tlfullname": "Administrator",
             "custype": "A",
             "accessToken": "eyJhbGciOiJIU"
         }
-
         adminLoginSuccess(adminInfo);
+
+        // Xóa trạng thái đăng nhập và chuyển hướng đến trang quản lý người dùng
         this.refresh();
         this.redirectToSystemPage();
+
+        // Thực hiện thực tế: Gửi yêu cầu đăng nhập đến máy chủ
         try {
             adminService.login(loginBody)
         } catch (e) {
             console.log('error login : ', e)
         }
-
     }
 
+    // Xử lý sự kiện khi người dùng nhấn phím Enter
     handlerKeyDown = (event) => {
         const keyCode = event.which || event.keyCode;
         if (keyCode === KeyCodeUtils.ENTER) {
@@ -84,13 +96,15 @@ class Login extends Component {
         }
     };
 
+    // Đăng ký lắng nghe sự kiện nhấn phím khi trang được tạo
     componentDidMount() {
         document.addEventListener('keydown', this.handlerKeyDown);
     }
 
+    // Hủy đăng ký lắng nghe sự kiện nhấn phím khi trang bị hủy
     componentWillUnmount() {
         document.removeEventListener('keydown', this.handlerKeyDown);
-        // fix Warning: Can't perform a React state update on an unmounted component
+        // Fix lỗi "Can't perform a React state update on an unmounted component"
         this.setState = (state, callback) => {
             return;
         };
@@ -156,6 +170,7 @@ class Login extends Component {
     }
 }
 
+// mapStateToProps kết nối trạng thái ngôn ngữ từ Redux store
 const mapStateToProps = state => {
     return {
         lang: state.app.language

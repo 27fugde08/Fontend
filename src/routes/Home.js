@@ -6,8 +6,10 @@ class Home extends Component {
 
     render() {
         const { isLoggedIn } = this.props;
+        // Xác định đường dẫn chuyển hướng dựa trên trạng thái đăng nhập của người dùng
         let linkToRedirect = isLoggedIn ? '/system/user-manage' : '/login';
 
+        // Chuyển hướng người dùng đến đường dẫn đã xác định
         return (
             <Redirect to={linkToRedirect} />
         );
@@ -15,9 +17,10 @@ class Home extends Component {
 
 }
 
+// mapStateToProps kết nối trạng thái đăng nhập từ Redux store
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.admin.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
