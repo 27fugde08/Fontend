@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-class Home extends Component {
+import HomeHeader from './HomeHeader';
+class HomePage extends Component {
 
     render() {
-        const { isLoggedIn } = this.props;
-        // Xác định đường dẫn chuyển hướng dựa trên trạng thái đăng nhập của người dùng
-        let linkToRedirect = isLoggedIn ? '/system/user-manage' : '/home';
         // Chuyển hướng người dùng đến đường dẫn đã xác định
         return (
-            <Redirect to={linkToRedirect} />
+            <div>
+                < HomeHeader />
+            </div>
         );
     }
 
@@ -28,4 +26,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
