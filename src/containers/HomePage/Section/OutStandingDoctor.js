@@ -16,10 +16,71 @@ class OutStandingDoctor extends Component {
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
-                                <div className='bg-image section-medical-facility' />
-                                <div>Bệnh viện Chợ Rẫy 1</div>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 1</div>
+                                    </div>
+                                </div>
                             </div>
-
+                            <div className='section-customize'>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 2</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 3</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 4</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 5</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-customize'>
+                                <div className='customize-border'>
+                                    <div className='outer-bg'>
+                                        <div className='bg-image section-outstanding-doctor' />
+                                    </div>
+                                    <div className='position text-center'>
+                                        <div>Giáo sư, tiến sĩ Nguyễn Trọng Duy</div>
+                                        <div>Cơ xương khớp 6</div>
+                                    </div>
+                                </div>
+                            </div>
                         </Slider>
                     </div>
 
