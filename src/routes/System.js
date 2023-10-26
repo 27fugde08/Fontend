@@ -2,37 +2,40 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import UserManage from '../containers/System/UserManage';
-import ProductManage from '../containers/System/ProductManage';
-import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
+import UserRedux from '../containers/System/UserRedux';
+import Header from '../containers/Header/Header';
 
 class System extends Component {
     render() {
-        const { systemMenuPath } = this.props;
+
+
+        const { systemMenuPath, isLoggedIn } = this.props;
         return (
-            <div className="system-container">
-                <div className="system-list">
-                    <Switch>
-                        {/* Định tuyến đến trang quản lý người dùng */}
-                        <Route path="/system/user-manage" component={UserManage} />
+            <React.Fragment>
+                {isLoggedIn && <Header />}
+                <div className="system-container">
+                    <div className="system-list">
+                        <Switch>
+                            {/* Định tuyến đến trang quản lý người dùng */}
+                            <Route path="/system/user-manage" component={UserManage} />
 
-                        {/* Định tuyến đến trang quản lý sản phẩm */}
-                        <Route path="/system/product-manage" component={ProductManage} />
+                            {/* Định tuyến đến trang quản lý sản phẩm */}
+                            <Route path="/system/user-redux" component={UserRedux} />
 
-                        {/* Định tuyến đến trang đăng ký nhóm gói hoặc tài khoản */}
-                        <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
-
-                        {/* Nếu đường dẫn URL không khớp với bất kỳ định tuyến nào trên, chuyển hướng đến đường dẫn được xác định trong systemMenuPath */}
-                        <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
-                    </Switch>
+                            {/* Nếu đường dẫn URL không khớp với bất kỳ định tuyến nào trên, chuyển hướng đến đường dẫn được xác định trong systemMenuPath */}
+                            <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
+                        </Switch>
+                    </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        systemMenuPath: state.app.systemMenuPath
+        systemMenuPath: state.app.systemMenuPath,
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
