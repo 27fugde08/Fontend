@@ -1,7 +1,10 @@
 import actionTypes from './actionTypes';
-import { getAllCodeService, createNewUserService, deleteUserService, getAllUsers, editUserService } from '../../services/userService';
+import {
+    getAllCodeService, createNewUserService,
+    deleteUserService, getAllUsers,
+    editUserService, getTopDoctorHomeService
+} from '../../services/userService';
 import { toast } from "react-toastify";
-import { dispatch } from '../../redux';
 
 // export const fetchGenderStart = () => ({
 //     type: actionTypes.FETCH_GENDER_START
@@ -188,7 +191,7 @@ export const editAUser = (data) => {
         } catch (e) {
             toast.error('Update the user error!!!');
             dispatch(editUsersFailed());
-            console.log('editUserFailed error', e)
+            console.log('editUsersFailed error', e)
         }
     }
 }
@@ -200,3 +203,28 @@ export const editUserSuccess = () => ({
 export const editUsersFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED
 })
+
+
+export const fetchTopDoctor = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getTopDoctorHomeService('');
+            if (res && res.errCode === 0) {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_SUCCESS,
+                    dataDoctors: res.data
+                })
+            }
+            else {
+                dispatch({
+                    type: actionTypes.FETCH_TOP_DOCTORS_FAILED,
+                })
+            }
+        } catch (e) {
+            toast.error('FETCH_TOP_DOCTORS_FAILED', e);
+            dispatch({
+                type: actionTypes.FETCH_TOP_DOCTORS_FAILED
+            })
+        }
+    }
+}

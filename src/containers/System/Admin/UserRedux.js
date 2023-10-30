@@ -29,7 +29,7 @@ class UserRedux extends Component {
             avatar: '',
 
             action: '',
-            userEditUserId: ''
+            userEditId: ''
 
         }
     }
@@ -44,36 +44,37 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux;
             this.setState({
                 genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let arrPositions = this.props.positionRedux;
             this.setState({
                 postionArr: arrPositions,
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : ''
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : ''
             })
         }
         if (prevProps.roleRedux !== this.props.roleRedux) {
             let arrRoles = this.props.roleRedux;
             this.setState({
                 roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
             })
         }
         if (prevProps.listUsers !== this.props.listUsers) {
             let arrGenders = this.props.genderRedux;
             let arrRoles = this.props.roleRedux;
-            let arrPositions = this.props.positionRedux; this.setState({
+            let arrPositions = this.props.positionRedux;
+            this.setState({
                 email: '',
                 password: '',
                 firstName: '',
                 lastName: '',
                 phoneNumber: '',
                 address: '',
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : '',
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgURL: ''
@@ -124,8 +125,8 @@ class UserRedux extends Component {
         }
         if (action === CRUD_ACTIONS.EDIT) {
             //fire redux edit user
-            this.props.createNewUser({
-                id: this.state.userEditUserId,
+            this.props.editAUserRedux({
+                id: this.state.userEditId,
                 email: this.state.email,
                 password: this.state.password,
                 firstName: this.state.firstName,
@@ -258,7 +259,7 @@ class UserRedux extends Component {
                                         {genders && genders.length > 0 &&
                                             genders.map((item, index) => {
                                                 return (
-                                                    <option key={index} value={item.key}>
+                                                    <option key={index} value={item.keyMap}>
                                                         {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                     </option>
                                                 )
@@ -275,7 +276,7 @@ class UserRedux extends Component {
                                     >
                                         {positions && positions.length > 0 && positions.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
 
@@ -291,7 +292,7 @@ class UserRedux extends Component {
                                     >
                                         {roles && roles.length > 0 && roles.map((item, index) => {
                                             return (
-                                                <option key={index} value={item.key}>
+                                                <option key={index} value={item.keyMap}>
                                                     {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                                 </option>
 
@@ -317,12 +318,13 @@ class UserRedux extends Component {
                                 </div>
                                 <div className='col-12 my-3'>
                                     <button
-                                        className={this.state.action === CRUD_ACTIONS.EDIT ? "btn btn-warning" : 'btn btn-primary'}
-                                        onClick={() => this.handleSaveUser()}>
+                                        className={this.state.action === CRUD_ACTIONS.EDIT ? "btn btn-warning" : "btn btn-primary"}
+                                        onClick={() => this.handleSaveUser()}
+                                    >
                                         {this.state.action === CRUD_ACTIONS.EDIT ?
-                                            <FormattedMessage id='manage-user.edit' />
+                                            <FormattedMessage id="manage-user.edit" />
                                             :
-                                            <FormattedMessage id='manage-user.save' />
+                                            <FormattedMessage id="manage-user.save" />
                                         }
                                     </button>
                                 </div>
@@ -368,6 +370,8 @@ const mapDispatchToProps = dispatch => {
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
 
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
+        editAUserRedux: (data) => dispatch(actions.editAUser(data)),
+
         fetchUserRedux: () => dispatch(actions.fetchAllUsersStart())
 
         // processLogout: () => dispatch(actions.processLogout()),
