@@ -13,10 +13,9 @@ import "slick-carousel/slick/slick-theme.css";
 class HomePage extends Component {
 
     render() {
-        // Chuyển hướng người dùng đến đường dẫn đã xác định
         let settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 50,
             slidesToShow: 4,
             slidesToScroll: 1,
