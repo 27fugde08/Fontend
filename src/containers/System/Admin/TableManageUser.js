@@ -33,7 +33,7 @@ class TableManageUser extends Component {
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.listUsers !== this.props.listUsers) {
-            let arrGenders = this.props.genderRedux;
+            // let arrGenders = this.props.genderRedux;
             this.setState({
                 userRedux: this.props.listUsers
             })
