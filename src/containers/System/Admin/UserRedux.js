@@ -364,14 +364,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getGenderStart: () => dispatch(actions.fetchGenderStart()),
-
         getPositionStart: () => dispatch(actions.fetchPositionStart()),
-
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
-
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
         editAUserRedux: (data) => dispatch(actions.editAUser(data)),
-
         fetchUserRedux: () => dispatch(actions.fetchAllUsersStart())
 
         // processLogout: () => dispatch(actions.processLogout()),

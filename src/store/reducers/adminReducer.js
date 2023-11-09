@@ -37,7 +37,7 @@ const adminReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
-        case actionTypes.FETCH_POSITON_FAILED:
+        case actionTypes.FETCH_POSITION_FAILED:
             state.positions = [];
             return {
                 ...state,

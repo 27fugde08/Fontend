@@ -13,7 +13,9 @@ class OutStandingDoctor extends Component {
             arrDoctors: []
         }
     }
-
+    componentDidMount() {
+        this.props.loadTopDoctors();
+    }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
             this.setState({
@@ -22,9 +24,6 @@ class OutStandingDoctor extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.loadTopDoctors();
-    }
     handleViewDetailDoctor = (doctor) => {
         if (this.props.history) {
             this.props.history.push(`/detail-doctor/${doctor.id}`)
@@ -34,6 +33,7 @@ class OutStandingDoctor extends Component {
         // Chuyển hướng người dùng đến đường dẫn đã xác định
         let arrDoctors = this.state.arrDoctors;
         let { language } = this.props;
+        console.log('check arrDoctor', arrDoctors)
         // arrDoctors = arrDoctors.concat(arrDoctors).concat(arrDoctors)
         return (
             <div className='section-share section-outstanding-doctor'>
