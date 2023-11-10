@@ -6,7 +6,7 @@ import Select from 'react-select';
 import * as actions from "../../../store/actions";
 import { CRUD_ACTIONS, LANGUAGES, dateFormat } from '../../../utils';
 import DatePicker from '../../../components/Input/DatePicker';
-import moment from 'moment';
+import moment, { months } from 'moment';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 import { saveBulkScheduleDoctor } from '../../../services/userService';
@@ -119,15 +119,20 @@ class ManageSchedule extends Component {
             doctorId: selectedDoctor.value,
             formatedDate: formatedDate
         })
-        console.log('check res bulkschedule', res)
-        // console.log('check result', result)
+        if (res && res.errCode === 0) {
+            toast.success("Save Infor succeed");
+        } else {
+
+            toast.error("Error saveBulkScheduleDoctor");
+            console.log("Error saveBulkScheduleDoctor >>> res: ", res)
+        }
+        console.log('check result: ', result)
     }
 
     render() {
-        // console.log('check child open modal', this.props.isOpen)
-        // console.log('check state: ', this.state)
         let { rangeTime } = this.state;
         let { language } = this.state;
+        let yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
         return (
             <div className='manage-schedule-container'>
                 <div className='m-s-title'>
@@ -149,7 +154,7 @@ class ManageSchedule extends Component {
                                 onChange={this.handleOnChangeDatePicker}
                                 className='form-control'
                                 value={this.state.currentDate}
-                                minDate={new Date()}
+                                minDate={yesterday}
                             />
                         </div>
                     </div>
