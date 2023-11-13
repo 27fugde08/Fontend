@@ -61,7 +61,7 @@ class ManageDoctor extends Component {
                     result.push(object)
                 })
             }
-            if (type == 'PRICE') {
+            if (type === 'PRICE') {
                 inputData.map((item, index) => {
                     let object = {};
                     let labelVi = `${item.valueVi}`;
@@ -217,6 +217,7 @@ class ManageDoctor extends Component {
     }
     render() {
         let { hasOldData } = this.state;
+        console.log('check state', this.state)
         return (
             <div className='manage-doctor-container'>
                 <div className='manage-doctor-title'>

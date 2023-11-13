@@ -80,7 +80,6 @@ class DoctorSchedule extends Component {
                     allAvailableTime: res.data ? res.data : []
                 })
             }
-            console.log('check res chedule from react', res)
         }
     }
     render() {
