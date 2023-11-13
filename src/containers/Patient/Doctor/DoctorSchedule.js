@@ -136,7 +136,7 @@ class DoctorSchedule extends Component {
                                                 <button
                                                     key={index}
                                                     className={language === LANGUAGES.VI ? 'btn-vie' : 'btn-en'}
-                                                    onClick={() => this.handleClickScheduleTime()}
+                                                    onClick={() => this.handleClickScheduleTime(item)}
                                                 >
                                                     {timeDisplay}
                                                 </button>
