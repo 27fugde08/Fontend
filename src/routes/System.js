@@ -6,6 +6,7 @@ import UserRedux from '../containers/System/Admin/UserRedux';
 import Header from '../containers/Header/Header';
 import ManageDoctor from '../containers/System/Admin/ManageDoctor';
 import ManageSpecialty from '../containers/System/Specialty/ManageSpecialty';
+import ManageClinic from '../containers/System/Clinic/ManageClinic';
 class System extends Component {
     render() {
 
@@ -27,6 +28,7 @@ class System extends Component {
 
                             <Route path="/system/manage-speciality" component={ManageSpecialty} />
 
+                            <Route path="/system/manage-clinic" component={ManageClinic} />
                             {/* Nếu đường dẫn URL không khớp với bất kỳ định tuyến nào trên, chuyển hướng đến đường dẫn được xác định trong systemMenuPath */}
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
 
